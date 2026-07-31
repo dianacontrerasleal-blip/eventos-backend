@@ -21,8 +21,8 @@ services:
       - "8002:8002"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/eventos_db
+    env_file:
+      - .env
 
 volumes:
   postgres_data_eventos:
