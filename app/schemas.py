@@ -1,6 +1,19 @@
 from pydantic import BaseModel
 from typing import Optional
 
+class UsuarioBase(BaseModel):
+    nombre: str
+    email: str
+
+class UsuarioCreate(UsuarioBase):
+    pass
+
+class Usuario(UsuarioBase):
+    id: int
+
+    class Config:
+        from_attributes = True
+
 class EventoBase(BaseModel):
     nombre: str
     ubicacion: str
@@ -17,7 +30,7 @@ class Evento(EventoBase):
 
 class BoletoBase(BaseModel):
     evento_id: int
-    nombre_comprador: str
+    usuario_id: int
     pagado: bool = False
 
 class BoletoCreate(BoletoBase):
